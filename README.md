@@ -9,6 +9,6 @@ The following bindings are implemented:
   - fc (fix command)  - edit and execute selected fzf item (C-f)
   - start lazygit in folder of selected fzf item (C-g)
   - execute selected fzf item (C-x)
-  history of repl commands and selections
+  - history of repl commands and selections
   
 These covers 90% of what I do at the shell.  You can add more mappings if needed.
