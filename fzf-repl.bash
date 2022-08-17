@@ -4,10 +4,10 @@
 
 # suggested alias:
 #    alias fr='~/repo/fzf-repl/fzf-repl.bash'
-
+set +o history
 fzf_height=6
 
-# FZF_DEFAULT_COMMAND --prompt doesn't support ansi color, our REPL prompt will not be colorless
+# FZF_DEFAULT_COMMAND --prompt doesn't support ansi color, our REPL prompt will be colorless
 PS1="\u@\h:\w$ "
 # defaults editor to neovim
 [ -z "$EDITOR" ] || export EDITOR="nvim"
@@ -45,7 +45,7 @@ while [ true ]; do
     eval 'prompt="${PS1@P}";' 2> /dev/null
     eval export FZF_DEFAULT_OPTS=\'--height=$fzf_height --info=inline --layout=reverse --prompt \"$prompt\"\'
     selected=$(fzf --print-query --bind \
-        'ctrl-f:execute(echo {} > ~/.fzf_fc; nvim ~/.fzf_fc > /dev/tty)+abort,ctrl-e:execute([ -f {} ] && (echo {} > ~/.fzf_repl_history; nvim {} > /dev/tty))+abort,ctrl-g:execute(cd $(dirname {}); lazygit > /dev/tty)+abort,ctrl-x:execute(echo {}; eval {})+abort'\
+        'ctrl-f:execute(echo {} > ~/.fzf_fc; nvim ~/.fzf_fc > /dev/tty)+abort,ctrl-e:execute([ -f {} ] && (echo {} > ~/.fzf_repl_history; nvim {} > /dev/tty))+abort,ctrl-g:execute(echo {} > ~/.fzf_repl_history; cd $(dirname {}); lazygit > /dev/tty)+abort,ctrl-x:execute(echo {}; eval {})+abort'\
     )
     if [ -f "$fzf_fc" ] ; then
         query=$(cat "$fzf_fc")
