@@ -45,7 +45,7 @@ while [ true ]; do
     eval 'prompt="${PS1@P}";' 2> /dev/null
     eval export FZF_DEFAULT_OPTS=\'--height=$fzf_height --info=inline --layout=reverse --prompt \"$prompt\"\'
     selected=$(fzf --print-query --bind \
-        'ctrl-f:execute(echo {} > ~/.fzf_fc; nvim ~/.fzf_fc > /dev/tty)+abort,ctrl-e:execute([ -f {} ] && (echo {} > ~/.fzf_repl_history; nvim {} > /dev/tty))+abort,ctrl-g:execute(echo {} > ~/.fzf_repl_history; cd $(dirname {}); lazygit > /dev/tty)+abort,ctrl-x:execute(echo {}; eval {})+abort'\
+        'ctrl-f:execute(echo {} > ~/.fzf_fc; nvim ~/.fzf_fc > /dev/tty)+abort,ctrl-e:execute([ -f {} ] && (echo {} > ~/.fzf_repl_history; nvim {} > /dev/tty))+abort,ctrl-g:execute(echo {} >> ~/.fzf_repl_history; cd $(dirname {}); lazygit > /dev/tty)+abort,ctrl-x:execute(echo {}; eval {})+abort'\
     )
     if [ -f "$fzf_fc" ] ; then
         query=$(cat "$fzf_fc")
