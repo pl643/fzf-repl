@@ -28,7 +28,9 @@ menu() {
          alias m='menu/bindings'      displays this menu
          alias x='exit'               exit fzf-repl
 
-    "
+	 fzf_height=%d                 this shell variable is fzf's height. Minimum is 3.
+
+    " $fzf_height
 }
 
 alias m=menu
